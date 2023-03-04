@@ -10,5 +10,12 @@
 
 <marquee><h1>Yo Yo Yo, Welcome to Film FunΩ!</h1></marquee>
 <h2>${TESTFILM.title}</h2>
+
+	<form method="POST" action="addNewFilm.do">
+		<label for="title">Title:</label>
+		<input type="text" name="title"> <br>
+		<label for="description">Description:</label>
+		<input type="text" name="description"> <br> 
+		</form>
 </body>
 </html>

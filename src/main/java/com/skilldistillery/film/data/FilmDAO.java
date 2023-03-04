@@ -10,10 +10,10 @@ public interface FilmDAO {
 
 	 
 		// finds films by film_id
-		public Film findFilmById(int filmId) throws SQLException;
+		public Film findFilmById(int filmId);
 
 		// finds actor by actor_id
-		public Actor findActorById(int actorId) throws SQLException;
+		public Actor findActorById(int actorId);
 
 		// finds actors by film_id
 		public List<Actor> findActorsByFilmId(int filmId);

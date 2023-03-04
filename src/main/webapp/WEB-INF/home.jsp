@@ -9,5 +9,6 @@
 <body>
 
 <marquee><h1>Yo Yo Yo, Welcome to Film FunΩ!</h1></marquee>
+<h2>${TESTFILM.title}</h2>
 </body>
 </html>

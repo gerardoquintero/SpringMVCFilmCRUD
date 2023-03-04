@@ -14,26 +14,45 @@ import com.skilldistillery.film.entities.Film;
 public class FilmController {
 	@Autowired
 	private FilmDAO filmDao;
-	
-	@RequestMapping(path= {"/","home.do"})
+
+	@RequestMapping(path = { "/", "home.do" })
 	public String goHome(Model model) {
-		Film TEST = filmDao.findFilmById(1);//DEBUG
+		Film TEST = filmDao.findFilmById(1);// DEBUG
 		model.addAttribute("TESTFILM", TEST);
 		return "home";
-		
+
 	}
-	
-	 @RequestMapping(path = "addNewFilm.do", method = RequestMethod.GET)
-	  public ModelAndView createFilm(Film film) {
-	    ModelAndView mv = new ModelAndView();
-	    Film f = filmDao.createFilm(film);
-	    
-	    if (film == null) {
-	    	
-	    } else {
-	    mv.addObject("film", f);
-	    mv.setViewName("WEB-INF/result.jsp");
-	    return mv;
-	  }
-}
+
+	@RequestMapping(path = "addNewFilm.do", method = RequestMethod.GET)
+	public ModelAndView createFilm(Film film) {
+		ModelAndView mv = new ModelAndView();
+		Film f = filmDao.createFilm(film);
+
+		if (film == null) {
+
+		} else {
+			mv.addObject("film", f);
+			mv.setViewName("result");
+			return mv;
+		}
+		return mv;
+
+	}
+
+	@RequestMapping(path = "getSingleFilm.do", method = RequestMethod.GET)
+	public ModelAndView getSingleFilmById(int filmId) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(filmId);
+		Film film = filmDao.findFilmById(filmId);
+		System.out.println(film);
+		if (film == null) {
+
+		} else {
+			mv.addObject("Film", film);
+			mv.setViewName("result");
+			return mv;
+		}
+		return mv;
+
+	}
 }

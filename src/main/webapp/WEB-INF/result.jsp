@@ -18,7 +18,6 @@
 		<li>ReplacementCost: ${Film.replacementCost}</li>
 		<li>Rating: ${Film.rating}</li>
 		<li>Special Features: ${Film.specialFeatures}</li>
-		<li>Cast: ${Film.cast}</li>
 		<li>Language: ${Film.language}</li>
 
 

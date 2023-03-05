@@ -42,7 +42,6 @@ public class FilmController {
 	@RequestMapping(path = "getSingleFilm.do", method = RequestMethod.GET)
 	public ModelAndView getSingleFilmById(int filmId) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(filmId);
 		Film film = filmDao.findFilmById(filmId);
 		System.out.println(film);
 		if (film == null) {
@@ -55,4 +54,31 @@ public class FilmController {
 		return mv;
 
 	}
+	
+	
+	@RequestMapping(path = "addFilmPage.do")
+	public ModelAndView goToFilmPage() {
+		ModelAndView mv = new ModelAndView();
+		
+			 mv.setViewName("addfilm");
+			 return mv;
+	}
+	
+	
+	@RequestMapping(path = "addFilm.do", method = RequestMethod.POST)
+	public ModelAndView createNewFilm(Film film) {
+		ModelAndView mv = new ModelAndView();
+		Film newFilm = filmDao.createFilm(film);
+		System.out.println(newFilm);
+		if (newFilm != null) {
+			mv.addObject("Film", newFilm);
+			mv.setViewName("result");
+			return mv;
+		} else {
+			newFilm = null;
+		}
+		return mv;
+
+	}
+	
 }

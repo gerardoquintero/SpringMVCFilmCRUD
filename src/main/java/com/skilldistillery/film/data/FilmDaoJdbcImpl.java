@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +19,13 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=US/Mountain";
 	private static final String user = "student";
 	private static final String pass = "student";
-	
+
 	static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println(e);
-        }
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.err.println(e);
+		}
 	}
 
 	@Override
@@ -97,8 +98,52 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 	@Override
 	public Film createFilm(Film film) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+			conn.setAutoCommit(false);
+			
+			String sql = "INSERT INTO film (title, description, releaseYear, languageId, length, replacementCost, rating, specialFeatures, language) VALUES (?,?,?,?,?,?,?,?,?)";
+			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			stmt.setString(1, film.getTitle());
+			stmt.setString(2, film.getDescription());
+			stmt.setInt(3, film.getReleaseYear());
+			stmt.setInt(4, film.getLanguageId());
+			stmt.setInt(5, film.getLength());
+			stmt.setDouble(6, film.getReplacementCost());
+			stmt.setString(7, film.getRating());
+			stmt.setString(8, film.getSpecialFeatures());
+			stmt.setString(9, film.getLanguage());
+			
+			
+			int updateCount = stmt.executeUpdate();
+			if(updateCount == 1) {
+				ResultSet keys = stmt.getGeneratedKeys();
+				if(keys.next()) {
+					int filmId = keys.getInt(1);
+					film.setId(filmId);
+				} 
+				keys.close();
+			} else {
+				film = null; 
+			} 
+					
+			conn.commit();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			if (conn != null) {
+				try {		
+					conn.rollback();
+				} catch(SQLException e2) {
+					e2.printStackTrace();
+					System.err.println("Error Rolling Back");
+				} 
+			}
+		} 
+		return film;
 	}
 
 	@Override

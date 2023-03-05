@@ -20,14 +20,11 @@
 		<input type="submit" value="Submit Request">
 	</form>
 
-	<form method="POST" action="addNewFilm.do">
-		<label for="title">Title:</label>
-		<input type="text" name="title">
-		<br> 
-		<label for="description">Description:</label>
-		<input type="text" name="description"> <br>
+	<h2>Create New Film</h2>
+	<form action="addFilmPage.do">
+		<input type="submit" value="Create Film Here"> 
+		<br>
 	</form>
-
 
 
 </body>

@@ -14,8 +14,17 @@
 	<h2>Search By ID</h2>
 
 	<form method="GET" action="getSingleFilm.do">
-		<label for="filmId">Search By Id:</label>
+		<label for="filmId">Id:</label>
 		<input type="text" name="filmId"> 
+		<br> 
+		<input type="submit" value="Submit Request">
+	</form>
+	
+	<h2>Search By Keyword</h2>
+
+	<form method="GET" action="filmKeyword.do">
+		<label for="searchByKeyword">Keyword:</label>
+		<input type="text" name="searchByKeyword"> 
 		<br> 
 		<input type="submit" value="Submit Request">
 	</form>

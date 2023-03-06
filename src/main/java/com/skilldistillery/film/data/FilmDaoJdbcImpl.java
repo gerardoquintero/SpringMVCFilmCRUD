@@ -147,8 +147,25 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 	@Override
 	public List<Film> searchByFilmKeyword(String keyWord) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Film> filmsFoundwithKeyword = new ArrayList<>();
+		Connection conn;
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+			String sql = "SELECT * " + "FROM film " + "WHERE film.title LIKE ?" + "OR film.description LIKE ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + keyWord + "%");
+			stmt.setString(2, "%" + keyWord + "%");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				filmsFoundwithKeyword.add(findFilmById(rs.getInt(1)));
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		return filmsFoundwithKeyword;
 	}
 
 	@Override

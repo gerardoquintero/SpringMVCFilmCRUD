@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+p {
+	font-size: 10px;
+}
+
+#singleFilm {
+	text-align: center;
+}
+
+.card {
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	
+}
+
+
+
+
+ 

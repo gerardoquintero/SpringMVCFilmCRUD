@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="CSS/style.css">
 <title>Film Site</title>
 </head>
 <body>
@@ -11,29 +13,47 @@
 	<marquee>
 		<h1>Yo Yo Yo, Welcome to Film FunΩ!</h1>
 	</marquee>
-	<h2>Search By ID</h2>
-
-	<form method="GET" action="getSingleFilm.do">
-		<label for="filmId">Id:</label>
-		<input type="text" name="filmId"> 
-		<br> 
-		<input type="submit" value="Submit Request">
-	</form>
-	
-	<h2>Search By Keyword</h2>
-
-	<form method="GET" action="filmKeyword.do">
-		<label for="searchByKeyword">Keyword:</label>
-		<input type="text" name="searchByKeyword"> 
-		<br> 
-		<input type="submit" value="Submit Request">
-	</form>
-
-	<h2>Create New Film</h2>
-	<form action="addFilmPage.do">
-		<input type="submit" value="Create Film Here"> 
-		<br>
-	</form>
+	<div class="card">
+  		<div class="card-header" id="singleFilm">
+   		 Search By ID
+  		</div>
+  		<div class="card-body" id="singleFilm">
+    		<form method="GET" action="getSingleFilm.do">
+				<label for="filmId"></label>
+				<input type="text" name="filmId"> 
+				<br>
+				<br> 
+				<input type="submit" value="Search">
+			</form>
+  		</div>
+	</div>
+	<br>
+	<div class="card">
+  		<div class="card-header" id="singleFilm">
+   		 Search By Keyword
+  		</div>
+  		<div class="card-body" id="singleFilm">
+    		<form method="GET" action="filmKeyword.do">
+				<label for="searchByKeyword"></label>
+				<input type="text" name="searchByKeyword"> 
+				<br> 
+				<br>
+				<input type="submit" value="Search">
+			</form>
+  		</div>
+	</div>
+	<br>
+	<div class="card">
+  		<div class="card-header" id="singleFilm">
+   		 Click Below To Create Your Own Film!
+  		</div>
+  		<div class="card-body" id="singleFilm">
+    		<form method="GET" action="addFilmPage.do">
+				<input type="submit" value="Create Film">
+			</form>
+  		</div>
+	</div>
+	<br>
 
 
 </body>

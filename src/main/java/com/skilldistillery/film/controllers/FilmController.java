@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.film.data.FilmDAO;
 import com.skilldistillery.film.entities.Film;
@@ -53,17 +54,15 @@ public class FilmController {
 		return mv;
 
 	}
-	
-	
+
 	@RequestMapping(path = "addFilmPage.do")
 	public ModelAndView goToFilmPage() {
 		ModelAndView mv = new ModelAndView();
-		
-			 mv.setViewName("addfilm");
-			 return mv;
+
+		mv.setViewName("addfilm");
+		return mv;
 	}
-	
-	
+
 	@RequestMapping(path = "addFilm.do", method = RequestMethod.POST)
 	public ModelAndView createNewFilm(Film film) {
 		ModelAndView mv = new ModelAndView();
@@ -81,6 +80,7 @@ public class FilmController {
 		return mv;
 
 	}
+
 	@RequestMapping(path = "delete.do", method = RequestMethod.POST)
 	public ModelAndView deletedFilm(int filmId) {
 		ModelAndView mv = new ModelAndView();
@@ -96,6 +96,31 @@ public class FilmController {
 			mv.setViewName("result");
 			return mv;
 		}
-		
-}
+
+	}
+
+	@RequestMapping(path = "update.do", method = RequestMethod.GET)
+	public ModelAndView updatePage(int filmId) {
+		System.out.println("inside update page method");
+		ModelAndView mv = new ModelAndView();
+		Film film = filmDao.findFilmById(filmId);
+		mv.addObject("film", film);
+		mv.setViewName("updateFilm");
+		return mv;
+	}
+	
+	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST)
+	public ModelAndView updateFilm(Film film) {
+		ModelAndView mv = new ModelAndView();
+		Film filmEdited = filmDao.updateFilm(film);
+		Film reGetFilm = filmDao.findFilmById(filmEdited.getId());
+		if (!filmEdited.equals(null)) {
+			mv.addObject("Film", reGetFilm);
+			mv.setViewName("result");
+			return mv;
+		} else {
+			reGetFilm = null;
+		}
+		return mv;
+	}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Film {
-	private int id;
+	private Integer id;
 	private String title;
 	private String description;
 	private Integer releaseYear;
@@ -22,7 +22,7 @@ public class Film {
 
 	}
 
-	public Film(int id, String title, String description, Integer releaseYear, int languageId, Integer length,
+	public Film(Integer id, String title, String description, Integer releaseYear, int languageId, Integer length,
 			double replacementCost, int rentalDuration, double rentalRate, String rating, String specialFeatures,
 			List<Actor> cast, String language) {
 		super();

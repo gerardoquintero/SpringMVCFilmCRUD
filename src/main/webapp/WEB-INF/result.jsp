@@ -18,6 +18,8 @@
 				<li>Release Year: ${Film.releaseYear}</li>
 				<li>Language: ${Film.language}</li>
 				<li>Length: ${Film.length}</li>
+				<li>Rental Duration: ${Film.rentalDuration}</li>
+				<li>Rental Rate: ${Film.rentalRate}</li>
 				<li>ReplacementCost: ${Film.replacementCost}</li>
 				<li>Rating: ${Film.rating}</li>
 				<li>Special Features: ${Film.specialFeatures}</li>
@@ -31,6 +33,11 @@
 			<p>Unable To Delete Film</p>
 		</c:if>
 		
+		<form action="update.do" method="GET">
+			<input type="submit" value="Update Film"> 
+			<input style="display: none" name="filmId" value="${Film.id}">
+		</form>
+	<br>
 	<form action="delete.do" method="POST">
 		<input type="submit" value="Delete Film"> 
 		<input style="display: none" name="filmId" value="${Film.id}">

@@ -20,7 +20,13 @@
 		<br>	
 		<label for="languageId">LanguageId: </label>
 		<input type="text" name="languageId">
-		<br>	  
+		<br>	
+		<label for="rentalDuration">Rental Duration: </label>
+		<input type="text" name="rentalDuration">
+		<br>  
+		<label for="rentalRate">Rental Rate: </label>
+		<input type="text" name="rentalRate">
+		<br>
 		<label for="length">Length: </label>
 		<input type="text" name="length">
 		<br>	
@@ -33,11 +39,11 @@
 		<label for="specialFeatures">Special Features: </label>
 		<input type="text" name="specialFeatures">
 		<br>	  
-		<label for="language">Language: </label>
-		<input type="text" name="language">
-		<br>
 		<input type="submit" value="Submit Request">
 	</form>
-
+	<br>	
+	<form action="home.do">
+		<input type="submit" value="Return Home" >
+	</form>
 </body>
 </html>

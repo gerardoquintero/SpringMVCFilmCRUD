@@ -43,7 +43,6 @@ public class FilmController {
 	public ModelAndView getSingleFilmById(int filmId) {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.findFilmById(filmId);
-		System.out.println(film);
 		if (film == null) {
 
 		} else {
@@ -69,9 +68,11 @@ public class FilmController {
 	public ModelAndView createNewFilm(Film film) {
 		ModelAndView mv = new ModelAndView();
 		Film newFilm = filmDao.createFilm(film);
+		Film reGetFilm = filmDao.findFilmById(newFilm.getId());
+		System.out.println(reGetFilm);
 		System.out.println(newFilm);
-		if (newFilm != null) {
-			mv.addObject("Film", newFilm);
+		if (!newFilm.equals(null)) {
+			mv.addObject("Film", reGetFilm);
 			mv.setViewName("result");
 			return mv;
 		} else {
@@ -80,5 +81,21 @@ public class FilmController {
 		return mv;
 
 	}
-	
+	@RequestMapping(path = "delete.do", method = RequestMethod.POST)
+	public ModelAndView deletedFilm(int filmId) {
+		ModelAndView mv = new ModelAndView();
+		boolean isFilmDeleted = filmDao.deleteFilm(filmId);
+		if (isFilmDeleted == true) {
+			System.out.println(isFilmDeleted);
+			mv.addObject("isDeleted", true);
+			mv.setViewName("result");
+			return mv;
+		} else {
+			System.out.println(isFilmDeleted);
+			mv.addObject("notDeleted", true);
+			mv.setViewName("result");
+			return mv;
+		}
+		
+}
 }

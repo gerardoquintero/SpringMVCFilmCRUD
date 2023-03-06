@@ -11,13 +11,20 @@ public class Film {
 	private int languageId;
 	private Integer length;
 	private double replacementCost;
+	private int rentalDuration;
+	private double rentalRate;
 	private String rating;
 	private String specialFeatures;
 	private List<Actor> cast;
 	private String language;
 
+	public Film() {
+
+	}
+
 	public Film(int id, String title, String description, Integer releaseYear, int languageId, Integer length,
-			double replacementCost, String rating, String specialFeatures, List<Actor> cast, String language) {
+			double replacementCost, int rentalDuration, double rentalRate, String rating, String specialFeatures,
+			List<Actor> cast, String language) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -26,22 +33,11 @@ public class Film {
 		this.languageId = languageId;
 		this.length = length;
 		this.replacementCost = replacementCost;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
 		this.cast = cast;
-		this.language = language;
-	}
-	
-
-	public Film() {
-		
-	}
-	
-	public String getLanguage() {
-		return language;
-	}
-	
-	public void setLanguage(String language) {
 		this.language = language;
 	}
 
@@ -51,15 +47,6 @@ public class Film {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-
-	public List<Actor> getCast() {
-		return cast;
-	}
-
-	public void setCast(List<Actor> cast) {
-		this.cast = cast;
 	}
 
 	public String getTitle() {
@@ -110,6 +97,22 @@ public class Film {
 		this.replacementCost = replacementCost;
 	}
 
+	public int getRentalDuration() {
+		return rentalDuration;
+	}
+
+	public void setRentalDuration(int rentalDuration) {
+		this.rentalDuration = rentalDuration;
+	}
+
+	public double getRentalRate() {
+		return rentalRate;
+	}
+
+	public void setRentalRate(double rentalRate) {
+		this.rentalRate = rentalRate;
+	}
+
 	public String getRating() {
 		return rating;
 	}
@@ -126,10 +129,26 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 	}
 
+	public List<Actor> getCast() {
+		return cast;
+	}
+
+	public void setCast(List<Actor> cast) {
+		this.cast = cast;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, id, languageId, length, rating, releaseYear, replacementCost, specialFeatures,
-				title);
+		return Objects.hash(cast, description, id, language, languageId, length, rating, releaseYear, rentalDuration,
+				rentalRate, replacementCost, specialFeatures, title);
 	}
 
 	@Override
@@ -141,19 +160,21 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		return Objects.equals(description, other.description) && id == other.id && languageId == other.languageId
+		return Objects.equals(cast, other.cast) && Objects.equals(description, other.description) && id == other.id
+				&& Objects.equals(language, other.language) && languageId == other.languageId
 				&& Objects.equals(length, other.length) && Objects.equals(rating, other.rating)
-				&& Objects.equals(releaseYear, other.releaseYear)
+				&& Objects.equals(releaseYear, other.releaseYear) && rentalDuration == other.rentalDuration
+				&& Double.doubleToLongBits(rentalRate) == Double.doubleToLongBits(other.rentalRate)
 				&& Double.doubleToLongBits(replacementCost) == Double.doubleToLongBits(other.replacementCost)
 				&& Objects.equals(specialFeatures, other.specialFeatures) && Objects.equals(title, other.title);
 	}
 
 	@Override
 	public String toString() {
-		return "Film \n id=" + id + "\n title=" + title + "\n description=" + description + "\n releaseYear=" + releaseYear
-				+ "\n languageId=" + languageId + "\n length=" + length + "\n replacementCost=" + replacementCost
-				+ "\n rating=" + rating + "\n specialFeatures=" + specialFeatures + "\n actors=" + cast + "\n language = "+ language ;
+		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
+				+ ", languageId=" + languageId + ", length=" + length + ", replacementCost=" + replacementCost
+				+ ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate + ", rating=" + rating
+				+ ", specialFeatures=" + specialFeatures + ", cast=" + cast + ", language=" + language + "]";
 	}
+
 }
-
-

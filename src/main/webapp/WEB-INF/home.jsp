@@ -11,11 +11,11 @@
 	<marquee>
 		<h1>Yo Yo Yo, Welcome to Film FunΩ!</h1>
 	</marquee>
-	<h2>${Film.title}</h2>
+	<h2>Search By ID</h2>
 
 	<form method="GET" action="getSingleFilm.do">
-		<input type="text" name="filmId"> 
 		<label for="filmId">Search By Id:</label>
+		<input type="text" name="filmId"> 
 		<br> 
 		<input type="submit" value="Submit Request">
 	</form>

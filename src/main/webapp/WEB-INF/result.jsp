@@ -23,6 +23,7 @@
 				<li>ReplacementCost: ${Film.replacementCost}</li>
 				<li>Rating: ${Film.rating}</li>
 				<li>Special Features: ${Film.specialFeatures}</li>
+				<li>Categories: ${Film.category}</li>
 				<li>Cast: ${Film.cast}</li>
 			</ul>
 		</c:if>

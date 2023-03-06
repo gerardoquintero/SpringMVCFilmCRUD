@@ -53,11 +53,12 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				String specialFeatures = rs.getString("film.special_features");
 				String name = findFilmLanguage(filmId);
 				List<Actor> cast = findActorsByFilmId(filmId);
-
+				String category = findCategory(filmId);
 				film = new Film(id, title, description, releaseYear, languageId, length, replacementCost,
-						rentalDuration, rentalRate, rating, specialFeatures, cast, name);
+						rentalDuration, rentalRate, rating, specialFeatures, cast, name, category);
+		
+				film.setCategory(category);
 			}
-
 			rs.close();
 			stmt.close();
 			conn.close();
@@ -158,6 +159,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				filmsFoundwithKeyword.add(findFilmById(rs.getInt(1)));
+			
 			}
 			rs.close();
 			stmt.close();
@@ -280,6 +282,31 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			}
 		}
 		return film;
+	}
+	
+	public String findCategory(int filmId) {
+		String category = "";
+		
+		try {
+			 Connection conn = DriverManager.getConnection(URL, user, pass);
+			String sql = "SELECT category.name FROM category JOIN film_category ON category.id = film_category.category_id JOIN film ON film.id = film_category.film_id WHERE film.id = ?";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+		
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				category = rs.getString("name");
+			} else {
+				category = "none";
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		return category;
 	}
 
 }

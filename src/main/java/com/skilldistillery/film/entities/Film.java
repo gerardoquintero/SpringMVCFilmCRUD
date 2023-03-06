@@ -17,14 +17,15 @@ public class Film {
 	private String specialFeatures;
 	private List<Actor> cast;
 	private String language;
-
+	private String category;
+	
 	public Film() {
 
 	}
 
 	public Film(Integer id, String title, String description, Integer releaseYear, int languageId, Integer length,
 			double replacementCost, int rentalDuration, double rentalRate, String rating, String specialFeatures,
-			List<Actor> cast, String language) {
+			List<Actor> cast, String language, String category) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -39,6 +40,15 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 		this.cast = cast;
 		this.language = language;
+		this.category = category;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public int getId() {

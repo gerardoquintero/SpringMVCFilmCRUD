@@ -31,4 +31,5 @@ public interface FilmDAO {
 
 	Film updateFilm(Film film);
 
+	public String findCategory(int filmId);
 }

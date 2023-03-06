@@ -51,7 +51,7 @@ package com.skilldistillery.film.entities;
 
 		@Override
 		public String toString() {
-			return "Actor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+			return firstName + " " + lastName;
 		}
 
 		@Override

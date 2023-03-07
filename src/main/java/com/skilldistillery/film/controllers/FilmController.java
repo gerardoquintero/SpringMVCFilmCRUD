@@ -59,7 +59,7 @@ public class FilmController {
 	public ModelAndView goToFilmPage() {
 		ModelAndView mv = new ModelAndView();
 
-		mv.setViewName("addfilm");
+		mv.setViewName("addFilm");
 		return mv;
 	}
 
